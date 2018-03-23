@@ -17,3 +17,14 @@ C:\Users\baker\Documents\Visual Studio 2017\Projects\Lottery\Lottery\bin\Debug\M
 C:\Users\baker\Documents\Visual Studio 2017\Projects\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.xml
 C:\Users\Uladzislau_Parkhutsi\Documents\Visual Studio 2017\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.dll
 C:\Users\Uladzislau_Parkhutsi\Documents\Visual Studio 2017\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.xml
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.csproj.ResolveComReference.cache
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.csproj.CoreCompileInputs.cache
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Lottery.exe.config
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Lottery.exe
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Lottery.pdb
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.dll
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.xml
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.exe
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.pdb
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Tables\GaussTableValues.dat
+C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.csprojResolveAssemblyReference.cache

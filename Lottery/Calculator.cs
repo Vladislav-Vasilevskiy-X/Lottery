@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using Lottery.Models;
 using Microsoft.SolverFoundation.Common;
 
 namespace Lottery
@@ -111,15 +112,13 @@ namespace Lottery
 			return top / bottom;
 		}
 
-		public static Rational MoivreLaplace(Rational eventProbability, int attemptsOfExperiement, int desiredNumberOfFacings)
+		public static Rational MoivreLaplace(double eventProbability, int attemptsOfExperiement, int desiredNumberOfFacings)
 		{
-			Rational ratRes;
+			var res = Math.Sqrt(attemptsOfExperiement * eventProbability * (1 - eventProbability));
+			var gauss = ((desiredNumberOfFacings - eventProbability * attemptsOfExperiement) / res);
+			var tableValue = LaplaceFunctionValues.GetTableValue(Math.Round(gauss, 2));
 
-			Rational.Power(attemptsOfExperiement * eventProbability * (1 - eventProbability), 1 / 2, out ratRes);
-			var gauss = ((desiredNumberOfFacings - eventProbability * attemptsOfExperiement) / ratRes);
-			var tableValue = ;
-
-			return gauss * tableValue / ratRes;
+			return gauss * tableValue / res;
 		}
 	}
 }

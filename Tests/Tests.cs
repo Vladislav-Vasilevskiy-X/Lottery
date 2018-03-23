@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Lottery.Sumilator;
 using Lottery;
+using Microsoft.SolverFoundation.Common;
 
 namespace Tests
 {
@@ -421,7 +423,7 @@ namespace Tests
 		[TestMethod]
 		public void ExcelParse()
 		{
-			var archive = ExcelParser.getExcelFile();
+			var archive = ExcelParser.getExcelArchiveFile("");
 			var bets = archive.PredictSequences(8);
 			archive.CalculateStatistics(512 * 6);
 			archive.Print();
@@ -441,12 +443,34 @@ namespace Tests
 		public void SerializeFromExcel()
 		{
 			var filePath = @"E:\SerializedArchive" + DateTime.Now.Ticks + ".dat";
-			var archive = ExcelParser.getExcelFile();
+			var archive = ExcelParser.getExcelArchiveFile("");
 			Serializer.WriteToBinaryFile(filePath, archive);
 
 			var fromBin = Serializer.ReadFromBinaryFile<Archive>(filePath);
 
 			Assert.AreEqual(archive.archive.Count, fromBin.archive.Count);
+		}
+
+		[TestMethod]
+		public void SerializeFromExcelGauss()
+		{
+			var filePath = @"E:\GaussTableValues.dat";
+			var table = ExcelParser.getGaussTable(@"E:\gaus.xlsx");
+			Serializer.WriteToBinaryFile(filePath, table);
+
+			var fromBin = Serializer.ReadFromBinaryFile<Dictionary<double, double>>(filePath);
+
+			Assert.AreEqual(table.Count, fromBin.Count);
+		}
+
+		[TestMethod]
+		public void GetTable()
+		{
+			var filePath = @"..\Debug\Tables\GaussTableValues.dat";
+			
+			var table = Serializer.ReadFromBinaryFile<Dictionary<double, double>>(filePath);
+
+			Assert.IsNotNull(table);
 		}
 
 		[TestMethod]
@@ -473,6 +497,19 @@ namespace Tests
 			}
 
 			var filePath = @"D:\SerializedArchive" + DateTime.Now.Ticks + ".dat";
+		}
+
+		[TestMethod]
+		public void CompareLaplaceAndBern()
+		{
+			var rational = 1/ (Rational)2;
+			var bern = Calculator.Bernoulli(rational, 100, 51);
+			var lap = Calculator.MoivreLaplace(0.5, 100, 51);
+
+			Rational res;
+			Rational.Power(9, 1 / (Rational) 2, out res);
+
+			Assert.AreEqual(bern, lap);
 		}
 	}
 }
