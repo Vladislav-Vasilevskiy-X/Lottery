@@ -69,9 +69,20 @@ namespace Lottery
 			}
 		}
 
-		public static IEnumerable<int[]> Combinations(int n, int k)
+		public static List<int[]> CombinationsAsArray(int m, int n)
 		{
-			int[] result = new int[k];
+			var res = new List<int[]>();
+			foreach (var combo in Combinations(m, n))
+			{
+				res.Add((int[])combo.Clone());
+			}
+
+			return res;
+		}
+
+		public static IEnumerable<int[]> Combinations(int m, int n)
+		{
+			int[] result = new int[m];
 			Stack<int> stack = new Stack<int>();
 			stack.Push(0);
 
@@ -85,7 +96,7 @@ namespace Lottery
 					result[index++] = ++value;
 					stack.Push(value);
 
-					if (index == k)
+					if (index == m)
 					{
 						yield return result;
 						break;

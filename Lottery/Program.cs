@@ -17,7 +17,7 @@ namespace Lottery
 			var simulator = new Simulator();
 			//int Editions = 20000;
 			//var archive = new Archive();
-			//var archiveGames = 800;
+			//var archiveGames = 5000;
 			//var attemptsToCompare = 100;
 			//var gamesToBeComparedIn = 10;
 
@@ -42,7 +42,7 @@ namespace Lottery
 
 			//	var betPrediction = archive.PredictSequence();
 			//	var betRandom = simulator.GenerateGameResult();
-			//	var betBernoulli = archive.PredictSequenceWithBernoulli(archiveGames);
+			//	var betBernoulli = archive.BestCombination(archiveGames);
 
 			//	for (int i = 1; i <= gamesToBeComparedIn; i++)
 			//	{
@@ -152,93 +152,143 @@ namespace Lottery
 			Calculator.PrintProbabilityToOdds(casinoBlackOneFrom5);
 			*/
 
-			// Probabilities to win in 6 from 49
+			//// Probabilities to win in 6 from 49
 			//var seq = Calculator.Combinations(49, 6);
-			var comb = Calculator.Combination(49, 6);
-			var expectedWonTimes = Calculator.HyperGeometricProbability(49, 3, 6, 3);
-			var chanceToWin4 = Calculator.HyperGeometricProbability(49, 4, 6, 4);
-			var chanceToWin5 = Calculator.HyperGeometricProbability(49, 5, 6, 5);
-			var chanceToWin6 = 1 / comb;
+			//var comb = Calculator.Combination(49, 6);
+			//var expectedWonTimes = Calculator.HyperGeometricProbability(49, 3, 6, 3);
+			//var chanceToWin4 = Calculator.HyperGeometricProbability(49, 4, 6, 4);
+			//var chanceToWin5 = Calculator.HyperGeometricProbability(49, 5, 6, 5);
+			//var chanceToWin6 = 1 / comb;
 
-			Console.WriteLine((double)expectedWonTimes);
-			Console.WriteLine((decimal)(double)chanceToWin4);
-			Console.WriteLine((decimal)(double)chanceToWin5);
-			Console.WriteLine((decimal)(double)chanceToWin6);
-			Calculator.PrintProbabilityToOdds(expectedWonTimes);
-			Calculator.PrintProbabilityToOdds(chanceToWin4);
-			Calculator.PrintProbabilityToOdds(chanceToWin5);
-			Calculator.PrintProbabilityToOdds(chanceToWin6);
+			//Console.WriteLine((double)expectedWonTimes);
+			//Console.WriteLine((decimal)(double)chanceToWin4);
+			//Console.WriteLine((decimal)(double)chanceToWin5);
+			//Console.WriteLine((decimal)(double)chanceToWin6);
+			//Calculator.PrintProbabilityToOdds(expectedWonTimes);
+			//Calculator.PrintProbabilityToOdds(chanceToWin4);
+			//Calculator.PrintProbabilityToOdds(chanceToWin5);
+			//Calculator.PrintProbabilityToOdds(chanceToWin6);
 
-			/*// Probabilities to win in 6 from 45
-			comb = Calculator.Combination(45, 6);
-			expectedWonTimes = Calculator.HyperGeometricProbability(45, 3, 6, 3);
-			chanceToWin4 = Calculator.HyperGeometricProbability(45, 4, 6, 4);
-			chanceToWin5 = Calculator.HyperGeometricProbability(45, 5, 6, 5);
-			chanceToWin6 = 1 / comb;
+			//// Probabilities to win in 6 from 45
+			//comb = Calculator.Combination(45, 6);
+			//expectedWonTimes = Calculator.HyperGeometricProbability(45, 3, 6, 3);
+			//chanceToWin4 = Calculator.HyperGeometricProbability(45, 4, 6, 4);
+			//chanceToWin5 = Calculator.HyperGeometricProbability(45, 5, 6, 5);
+			//chanceToWin6 = 1 / comb;
 
-			Console.WriteLine((double)expectedWonTimes);
-			Console.WriteLine((decimal)(double)chanceToWin4);
-			Console.WriteLine((decimal)(double)chanceToWin5);
-			Console.WriteLine((decimal)(double)chanceToWin6);
-			Calculator.PrintProbabilityToOdds(expectedWonTimes);
-			Calculator.PrintProbabilityToOdds(chanceToWin4);
-			Calculator.PrintProbabilityToOdds(chanceToWin5);
-			Calculator.PrintProbabilityToOdds(chanceToWin6);
+			//Console.WriteLine((double)expectedWonTimes);
+			//Console.WriteLine((decimal)(double)chanceToWin4);
+			//Console.WriteLine((decimal)(double)chanceToWin5);
+			//Console.WriteLine((decimal)(double)chanceToWin6);
+			//Calculator.PrintProbabilityToOdds(expectedWonTimes);
+			//Calculator.PrintProbabilityToOdds(chanceToWin4);
+			//Calculator.PrintProbabilityToOdds(chanceToWin5);
+			//Calculator.PrintProbabilityToOdds(chanceToWin6);
 
-			// Probabilities to win in KENO
-			var seq2 = Calculator.Combination(60, 20);
-			var chanceToWin10f10 = Calculator.HyperGeometricProbability(60, 10, 20, 10);
-			var chanceToWin9f10 = Calculator.HyperGeometricProbability(60, 10, 20, 9);
-			var chanceToWin8f10 = Calculator.HyperGeometricProbability(60, 10, 20, 8);
-			var chanceToWin9f9 = Calculator.HyperGeometricProbability(60, 9, 20, 9);
-			var chanceToWin8f9 = Calculator.HyperGeometricProbability(60, 9, 20, 8);
-			var chanceToWin7f9 = Calculator.HyperGeometricProbability(60, 9, 20, 7);
-			var chanceToWin8f8 = Calculator.HyperGeometricProbability(60, 8, 20, 8);
-			var chanceToWin7f8 = Calculator.HyperGeometricProbability(60, 8, 20, 7);
-			var chanceToWin7f7 = Calculator.HyperGeometricProbability(60, 7, 20, 7);
+			//// Probabilities to win in 5 from 36
+			//comb = Calculator.Combination(36, 5);
+			//expectedWonTimes = Calculator.HyperGeometricProbability(36, 3, 5, 3);
+			//chanceToWin4 = Calculator.HyperGeometricProbability(36, 4, 5, 4);
+			//chanceToWin5 = 1 / comb;
+			//chanceToWin6 = 1 / (comb * 4);
 
-			Console.WriteLine(((double)seq2).ToString("N1", CultureInfo.InvariantCulture));
+			//Console.WriteLine((double)expectedWonTimes);
+			//Console.WriteLine((decimal)(double)chanceToWin4);
+			//Console.WriteLine((decimal)(double)chanceToWin5);
+			//Console.WriteLine((decimal)(double)chanceToWin6);
+			//Calculator.PrintProbabilityToOdds(expectedWonTimes);
+			//Calculator.PrintProbabilityToOdds(chanceToWin4);
+			//Calculator.PrintProbabilityToOdds(chanceToWin5);
+			//Calculator.PrintProbabilityToOdds(chanceToWin6);
 
-			Console.WriteLine((decimal)(double)chanceToWin10f10);
-			Console.WriteLine((decimal)(double)chanceToWin9f10);
-			Console.WriteLine((decimal)(double)chanceToWin8f10);
-			Console.WriteLine((decimal)(double)chanceToWin9f9);
-			Console.WriteLine((decimal)(double)chanceToWin8f9);
-			Console.WriteLine((decimal)(double)chanceToWin7f9);
-			Console.WriteLine((decimal)(double)chanceToWin8f8);
-			Console.WriteLine((decimal)(double)chanceToWin7f8);
-			Console.WriteLine((decimal)(double)chanceToWin7f7);
-			Calculator.PrintProbabilityToOdds(chanceToWin10f10);
-			Calculator.PrintProbabilityToOdds(chanceToWin9f10);
-			Calculator.PrintProbabilityToOdds(chanceToWin8f10);
-			Calculator.PrintProbabilityToOdds(chanceToWin9f9);
-			Calculator.PrintProbabilityToOdds(chanceToWin8f9);
-			Calculator.PrintProbabilityToOdds(chanceToWin7f9);
-			Calculator.PrintProbabilityToOdds(chanceToWin8f8);
-			Calculator.PrintProbabilityToOdds(chanceToWin7f8);
-			Calculator.PrintProbabilityToOdds(chanceToWin7f7);
-			*/
+			//// Probabilities to win in KENO
+			//var seq2 = Calculator.Combination(60, 20);
+			//var chanceToWin10f10 = Calculator.HyperGeometricProbability(60, 10, 20, 10);
+			//var chanceToWin9f10 = Calculator.HyperGeometricProbability(60, 10, 20, 9);
+			//var chanceToWin8f10 = Calculator.HyperGeometricProbability(60, 10, 20, 8);
+			//var chanceToWin9f9 = Calculator.HyperGeometricProbability(60, 9, 20, 9);
+			//var chanceToWin8f9 = Calculator.HyperGeometricProbability(60, 9, 20, 8);
+			//var chanceToWin7f9 = Calculator.HyperGeometricProbability(60, 9, 20, 7);
+			//var chanceToWin8f8 = Calculator.HyperGeometricProbability(60, 8, 20, 8);
+			//var chanceToWin7f8 = Calculator.HyperGeometricProbability(60, 8, 20, 7);
+			//var chanceToWin7f7 = Calculator.HyperGeometricProbability(60, 7, 20, 7);
 
-			/*var archive = new Archive();
-			var archiveGames = 500;
+			//Console.WriteLine(((double)seq2).ToString("N1", CultureInfo.InvariantCulture));
+
+			//Console.WriteLine((decimal)(double)chanceToWin10f10);
+			//Console.WriteLine((decimal)(double)chanceToWin9f10);
+			//Console.WriteLine((decimal)(double)chanceToWin8f10);
+			//Console.WriteLine((decimal)(double)chanceToWin9f9);
+			//Console.WriteLine((decimal)(double)chanceToWin8f9);
+			//Console.WriteLine((decimal)(double)chanceToWin7f9);
+			//Console.WriteLine((decimal)(double)chanceToWin8f8);
+			//Console.WriteLine((decimal)(double)chanceToWin7f8);
+			//Console.WriteLine((decimal)(double)chanceToWin7f7);
+			//Calculator.PrintProbabilityToOdds(chanceToWin10f10);
+			//Calculator.PrintProbabilityToOdds(chanceToWin9f10);
+			//Calculator.PrintProbabilityToOdds(chanceToWin8f10);
+			//Calculator.PrintProbabilityToOdds(chanceToWin9f9);
+			//Calculator.PrintProbabilityToOdds(chanceToWin8f9);
+			//Calculator.PrintProbabilityToOdds(chanceToWin7f9);
+			//Calculator.PrintProbabilityToOdds(chanceToWin8f8);
+			//Calculator.PrintProbabilityToOdds(chanceToWin7f8);
+			//Calculator.PrintProbabilityToOdds(chanceToWin7f7);
+
+			//// Probabilities to win in 12 from 24
+			//comb = Calculator.Combination(24, 12);
+			//expectedWonTimes = Calculator.HyperGeometricProbability(24, 12, 12, 12);
+			//chanceToWin4 = Calculator.HyperGeometricProbability(24, 12, 12, 0);
+
+			//Console.WriteLine((double)expectedWonTimes);
+			//Console.WriteLine((decimal)(double)chanceToWin4);
+			//Calculator.PrintProbabilityToOdds(expectedWonTimes);
+			//Calculator.PrintProbabilityToOdds(chanceToWin4);
+
+			
+			var archive = new Archive();
+			//archive = Serializer.ReadFromBinaryFile<Archive>(@"D:\SerializedArchive636574971181534483.dat");
+			var archiveGames = 2000;
 			for (int i = 1; i <= archiveGames; i++)
 			{
 				var sequence = simulator.GenerateGameResult();
 				archive.AddSequence(sequence, i);
 			}
 
-			var combos = archive.BestCombinations(archiveGames, 10);
 
-			foreach (var c in combos)
+			var comb = archive.BestCombination(archiveGames);
+			double _q = 1;
+			for (int i = 0; i < Constants.GameNumbersFallsOut; i++)
 			{
-				Console.Write($"{10 - Array.IndexOf(combos, c)}: ");
-				foreach (var number in c)
-				{
-					var postfix = (Array.IndexOf(c, number) == c.Length - 1) ? ".\n" : ", ";
-					Console.Write(number + postfix);
-				}
+				_q *= (Constants.GameNumbersFallsOut - i) / (double)(Constants.GameTotalNumbers - i);
 			}
-			*/
+
+			var actualDiffInPerc = (double)(comb.ChanceToMeet / _q * 100) - 100;
+
+			for (int j = 0; j < comb.Value.Length; j++)
+			{
+				var postfix = (j == comb.Value.Length - 1) ? ".\n" : ", ";
+				Console.Write(comb.Value[j] + postfix);
+			}
+
+			archive.Print();
+			Console.WriteLine($"Bern {(double)comb.ChanceToMeet}  vs average: {_q} more probable on {actualDiffInPerc}%");
+			
+			//for (int i = 0; i < combos.Length; i++)
+			//{
+			//	Console.WriteLine($"{10 - i}: ");
+			//	for (int j = 0; j < combos[i].Length; j++)
+			//	{
+			//		var postfix = (j == combos[i].Length - 1) ? ".\n" : ", ";
+			//		Console.Write(combos[i][j] + postfix);
+			//	}
+			//}
+
+			//foreach (int[] c in Calculator.Combinations(Constants.GameNumbersFallsOut, Constants.GameTotalNumbers))
+			//{
+			//	Console.WriteLine(string.Join(",", c));
+			//	Console.WriteLine();
+			//}
+			/*
 
 			var archive = new Archive();
 			var threeCons = 0;
@@ -300,6 +350,7 @@ namespace Lottery
 			Console.WriteLine($"4 wons {fourCons} won times vs expected {(decimal)(double)expectedWonTimes4}. Difference (actual more than expected) is : {actual4diffInPerc}%");
 			Console.WriteLine($"5 wons {fiveCons} won times vs expected {(decimal)(double)expectedWonTimes5}. Difference (actual more than expected) is : {actual5diffInPerc}%");
 			Console.WriteLine($"6 wons {sixCons} won times vs expected {(decimal)(double)expectedWonTimes6}. Difference (actual more than expected) is : {actual6diffInPerc}%");
+		*/
 		}
 	}
 }

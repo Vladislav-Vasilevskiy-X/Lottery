@@ -68,8 +68,8 @@ namespace Lottery.Sumilator
 		{
 			foreach (var number in archive)
 			{
-				number.BernuolliCoefToFaceNext = Calculator.Bernoulli(Calculator.HyperGeometricProbability(Constants.GameTotalNumbers, 1, Constants.GameNumbersFallsOut, 1), editions + 1, number.FacedTimes + 1);
-				number.BernuolliCoefToNotFaceNext = Calculator.Bernoulli(Calculator.HyperGeometricProbability(Constants.GameTotalNumbers, 1, Constants.GameNumbersFallsOut, 1), editions + 1, number.FacedTimes);
+				//number.BernuolliCoefToFaceNext = Calculator.Bernoulli(Calculator.HyperGeometricProbability(Constants.GameTotalNumbers, 1, Constants.GameNumbersFallsOut, 1), editions + 1, number.FacedTimes + 1);
+				//number.BernuolliCoefToNotFaceNext = Calculator.Bernoulli(Calculator.HyperGeometricProbability(Constants.GameTotalNumbers, 1, Constants.GameNumbersFallsOut, 1), editions + 1, number.FacedTimes);
 				number.BernuolliCoefDifference = number.BernuolliCoefToFaceNext - number.BernuolliCoefToNotFaceNext;
 				//if (Double.IsNaN(number.BernuolliCoefToFaceNext) || Double.IsNaN(number.BernuolliCoefToNotFaceNext))
 				//	throw new Exception("Bernoulli is NAN");
@@ -103,7 +103,7 @@ namespace Lottery.Sumilator
 			foreach (var number in archive)
 			{
 				number.BernuolliCoefToFaceNext = Calculator.Bernoulli(Constants.probabilityToTakeOneDesiredBall, editions + 1, number.FacedTimes + 1);
-				//number.BernuolliCoefToNotFaceNext = Calculator.Bernoulli(Calculator.HyperGeometricProbability(Constants.GameFourtyNine, 1, Constants.GameSix, 1), editions + 1, number.FacedTimes);
+				//number.BernuolliCoefToNotFaceNext = Calculator.Bernoulli(Calculator.HyperGeometricProbability(Constants.GameTotalNumbers, 1, Constants.GameNumbersFallsOut, 1), editions + 1, number.FacedTimes);
 				//number.BernuolliCoefDifference = number.BernuolliCoefToFaceNext - number.BernuolliCoefToNotFaceNext;
 				////if (Double.IsNaN(number.BernuolliCoefToFaceNext) || Double.IsNaN(number.BernuolliCoefToNotFaceNext))
 				//	throw new Exception("Bernoulli is NAN");
@@ -147,38 +147,63 @@ namespace Lottery.Sumilator
 		{
 			CalculateBernouli(editions);
 			var que = new Queue<Combination>();
-			Rational lastQ = 0;
-			var combintaions = Calculator.Combinations(Constants.GameTotalNumbers, Constants.GameNumbersFallsOut);
+			double lastQ = 0;
+			var combintaions = Calculator.CombinationsAsArray(Constants.GameNumbersFallsOut, Constants.GameTotalNumbers);
 			for (int c = 0; c < combintaions.Count(); c++)
 			{
 
-				if (c % 10 == 0) Console.Clear();
-				Rational _q = 1;
+				double _q = 1;
 				for (int i = 0; i < Constants.GameNumbersFallsOut; i++)
 				{
-					_q *= archive.Find(a => a.Value == combintaions.ElementAt(c)[i]).BernuolliCoefToFaceNext * (1 / (Rational)(Constants.GameTotalNumbers - i));
+					_q *= (double)archive[combintaions[c][i] - 1].BernuolliCoefToFaceNext * ((Constants.GameNumbersFallsOut - i) / (double)(Constants.GameTotalNumbers - i));
 				}
 
 				if (_q >= lastQ)
 				{
 					lastQ = _q;
-					que.Enqueue(new Combination(combintaions.ElementAt(c), _q));
+					que.Enqueue(new Combination(combintaions[c], _q));
 				}
 
-				if (que.Count == desiredCombinations)
-				{
-					break;
-				}
-
-				if (que.Count == desiredCombinations)
+				if (que.Count > desiredCombinations)
 				{
 					que.Dequeue();
 				}
 
-				Console.WriteLine($"combination {c + 1} from {combintaions.Count()}. {1 / combintaions.Count() * 100}% completed. Que has {que.Count} numbers.");
+				if (c % 1000000 == 0) Console.WriteLine($"combination {c} from {combintaions.Count()}. {Math.Round((c + 1) / (double)combintaions.Count(), 2) * 100}% completed. Que has {que.Count} numbers.");
 			}
 
 			return que.Select(a => a.Value).ToArray();
+		}
+
+		public Combination BestCombination(int editions)
+		{
+			CalculateBernouli(editions);
+			//int[] combination = new int[Constants.GameNumbersFallsOut];
+			Combination combination = null;
+			Rational lastQ = 0;
+			var combintaions = Calculator.CombinationsAsArray(Constants.GameNumbersFallsOut, Constants.GameTotalNumbers);
+			for (int c = 0; c < combintaions.Count(); c++)
+			{
+
+				Rational _q = 1;
+				for (int i = 0; i < Constants.GameNumbersFallsOut; i++)
+				{
+					//_q *= ((double)archive[combintaions[c][i] - 1].BernuolliCoefToFaceNext * ((Constants.GameNumbersFallsOut - i) / (double)(Constants.GameTotalNumbers - i)));
+					_q *= archive[combintaions[c][i] - 1].BernuolliCoefToFaceNext;
+
+				}
+
+				if (_q >= lastQ)
+				{
+					lastQ = _q;
+					//combination = combintaions[c];
+					combination = new Combination(combintaions[c], _q);
+				}
+
+				if (c % 1000 == 0) Console.WriteLine($"combination {c} from {combintaions.Count()}. {Math.Round((c + 1) / (double)combintaions.Count(), 2) * 100}% completed.");
+			}
+
+			return combination;
 		}
 	}
 }

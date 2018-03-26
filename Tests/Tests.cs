@@ -442,8 +442,8 @@ namespace Tests
 		[TestMethod]
 		public void SerializeFromExcel()
 		{
-			var filePath = @"E:\SerializedArchive" + DateTime.Now.Ticks + ".dat";
-			var archive = ExcelParser.getExcelArchiveFile("");
+			var filePath = @"D:\SerializedArchive" + DateTime.Now.Ticks + ".dat";
+			var archive = ExcelParser.getExcelArchiveFile(@"D:\results.xlsx");
 			Serializer.WriteToBinaryFile(filePath, archive);
 
 			var fromBin = Serializer.ReadFromBinaryFile<Archive>(filePath);

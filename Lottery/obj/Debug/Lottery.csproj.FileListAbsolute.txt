@@ -28,3 +28,13 @@ C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.exe
 C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.pdb
 C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\bin\Debug\Tables\GaussTableValues.dat
 C:\Users\Uladzislau_Parkhutsi\source\repos\Lottery\Lottery\obj\Debug\Lottery.csprojResolveAssemblyReference.cache
+C:\Users\baker\Source\Repos\Lottery\Lottery\bin\Debug\Tables\GaussTableValues.dat
+C:\Users\baker\Source\Repos\Lottery\Lottery\bin\Debug\Lottery.exe.config
+C:\Users\baker\Source\Repos\Lottery\Lottery\bin\Debug\Lottery.exe
+C:\Users\baker\Source\Repos\Lottery\Lottery\bin\Debug\Lottery.pdb
+C:\Users\baker\Source\Repos\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.dll
+C:\Users\baker\Source\Repos\Lottery\Lottery\bin\Debug\Microsoft.Solver.Foundation.xml
+C:\Users\baker\Source\Repos\Lottery\Lottery\obj\Debug\Lottery.csprojResolveAssemblyReference.cache
+C:\Users\baker\Source\Repos\Lottery\Lottery\obj\Debug\Lottery.csproj.ResolveComReference.cache
+C:\Users\baker\Source\Repos\Lottery\Lottery\obj\Debug\Lottery.exe
+C:\Users\baker\Source\Repos\Lottery\Lottery\obj\Debug\Lottery.pdb
